@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue System</title>
+    <style>
+        /* CSS เดียวกับที่คุณใช้ */
+    </style>
+    <script>
+        let queueNumber = 1;
+        let popupWindow;
+
+        function openPopup() {
+            if (!popupWindow || popupWindow.closed) {
+                popupWindow = window.open("popup.html", "QueuePopup", "width=800,height=600");
+            }
+        }
+
+        function callQueue(roomNumber) {
+            openPopup();
+
+            // เก็บค่าคิวใน Local Storage
+            localStorage.setItem("queueNumber", String(queueNumber).padStart(3, '0'));
+            localStorage.setItem("roomNumber", roomNumber);
+
+            queueNumber++;
+        }
+
+        function resetQueue() {
+            if (popupWindow && !popupWindow.closed) {
+                localStorage.setItem("queueNumber", "000");
+                localStorage.setItem("roomNumber", "0");
+            }
+            queueNumber = 1;
+        }
+
+        window.onload = openPopup;
+    </script>
+</head>
+<body>
+    <h1>ระบบเรียกคิว</h1>
+    <button onclick="callQueue(1)">🔔 เรียกคิวที่ห้องตรวจ 1</button>
+    <button onclick="callQueue(2)">🔔 เรียกคิวที่ห้องตรวจ 2</button>
+    <button onclick="callQueue(3)">🔔 เรียกคิวที่ห้องตรวจ 3</button>
+    <button onclick="callQueue(4)">🔔 เรียกคิวที่ห้องตรวจ 4</button>
+    <button onclick="resetQueue()">รีเซ็ตคิว</button>
+</body>
+</html>

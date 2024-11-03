@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 10px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #004085;
+        }
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 2px solid #004085;
+            padding: 20px;
+            font-size: 2em;
+        }
+    </style>
+    <script>
+        function updateQueueDisplay() {
+            const queueNumber = localStorage.getItem("queueNumber") || "000";
+            const roomNumber = localStorage.getItem("roomNumber") || "0";
+
+            document.getElementById("queueNumber").textContent = queueNumber;
+            document.getElementById("roomNumber").textContent = roomNumber;
+        }
+
+        // เรียก updateQueueDisplay ทุกๆ 2 วินาที
+        setInterval(updateQueueDisplay, 2000);
+    </script>
+</head>
+<body onload="updateQueueDisplay()">
+    <h2>โรงพยาบาลสมเด็จพระเจ้าตากสินมหาราช</h2>
+    <table>
+        <tr>
+            <th>หมายเลข</th>
+            <th>ห้องตรวจ</th>
+        </tr>
+        <tr>
+            <td id="queueNumber">000</td>
+            <td id="roomNumber">0</td>
+        </tr>
+    </table>
+</body>
+</html>
